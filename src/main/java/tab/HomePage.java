@@ -6,7 +6,7 @@ public class HomePage {
     public static final String url = "https://qa-scooter.praktikum-services.ru/";
     private WebDriver driver;
     //Локатор до кнопок "Вопросы о важном"
-    public By FAQButtons = By.xpath("//div[contains(@class,'Home_FAQ__3uVm4')]");
+    public By FAQButtons = By.xpath("//div[contains(@class,'Home_FAQ')]");
     // локатор для кнопки «Заказать» в хедере
     private By orderTopButton = By.xpath("//div[contains(@class,'Header')]//button[text()='Заказать']");
     // локатор для кнопки «Заказать» в мидле
