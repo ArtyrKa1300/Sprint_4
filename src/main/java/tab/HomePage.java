@@ -3,8 +3,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class HomePage {
-
+    public static final String url = "https://qa-scooter.praktikum-services.ru/";
     private WebDriver driver;
+    //Локатор до кнопок "Вопросы о важном"
+    public By FAQButtons = By.xpath("//div[contains(@class,'Home_FAQ__3uVm4')]");
     // локатор для кнопки «Заказать» в хедере
     private By orderTopButton = By.xpath("//div[contains(@class,'Header')]//button[text()='Заказать']");
     // локатор для кнопки «Заказать» в мидле
@@ -12,14 +14,23 @@ public class HomePage {
     // локатор для кнопки «Закрыть» куки в футере
     private By closeCookie = By.xpath(".//button[text()='да все привыкли']");
     // локаторы для кнопок «Вопросы о важном»
-    private By FAQ1 = By.xpath("//*[@id='accordion__heading-0']");
-    private By FAQ2 = By.xpath("//*[@id='accordion__heading-1']");
-    private By FAQ3 = By.xpath("//*[@id='accordion__heading-2']");
-    private By FAQ4 = By.xpath("//*[@id='accordion__heading-3']");
-    private By FAQ5 = By.xpath("//*[@id='accordion__heading-4']");
-    private By FAQ6 = By.xpath("//*[@id='accordion__heading-5']");
-    private By FAQ7 = By.xpath("//*[@id='accordion__heading-6']");
-    private By FAQ8 = By.xpath("//*[@id='accordion__heading-7']");
+    private By FAQHowMuch = By.xpath("//*[@id='accordion__heading-0']");
+    private By FAQSeveralScooters = By.xpath("//*[@id='accordion__heading-1']");
+    private By FAQRentalTime = By.xpath("//*[@id='accordion__heading-2']");
+    private By FAQOrderToday = By.xpath("//*[@id='accordion__heading-3']");
+    private By FAQExtendOrderOrEarlier = By.xpath("//*[@id='accordion__heading-4']");
+    private By FAQBringChargers = By.xpath("//*[@id='accordion__heading-5']");
+    private By FAQCancelOrder = By.xpath("//*[@id='accordion__heading-6']");
+    private By FAQOutsideMoscowRingRoad = By.xpath("//*[@id='accordion__heading-7']");
+    //Локаторы текста «Вопросы о важном»
+    public By FAQHowMuchText = By.id("accordion__panel-0");
+    public By FAQSeveralScootersText = By.id("accordion__panel-1");
+    public By FAQRentalTimeText = By.id("accordion__panel-2");
+    public By FAQOrderTodayText = By.id("accordion__panel-3");
+    public By FAQExtendOrderOrEarlierText = By.id("accordion__panel-4");
+    public By FAQBringChargersText = By.id("accordion__panel-5");
+    public By FAQCancelOrderText = By.id("accordion__panel-6");
+    public By FAQOutsideMoscowRingRoadText = By.id("accordion__panel-7");
 
     public HomePage (WebDriver driver){
         this.driver = driver;
@@ -28,29 +39,29 @@ public class HomePage {
         driver.findElement(orderTopButton).click();
     }
 
-    public void openFAQ1(){
-        driver.findElement(FAQ1).click();
+    public void openFAQHowMuch(){
+        driver.findElement(FAQHowMuch).click();
     }
-    public void openFAQ2(){
-        driver.findElement(FAQ2).click();
+    public void openFAQSeveralScooters(){
+        driver.findElement(FAQSeveralScooters).click();
     }
-    public void openFAQ3(){
-        driver.findElement(FAQ3).click();
+    public void openFAQRentalTime(){
+        driver.findElement(FAQRentalTime).click();
     }
-    public void openFAQ4(){
-        driver.findElement(FAQ4).click();
+    public void openFAQOrderToday(){
+        driver.findElement(FAQOrderToday).click();
     }
-    public void openFAQ5(){
-        driver.findElement(FAQ5).click();
+    public void openFAQExtendOrderOrEarlier(){
+        driver.findElement(FAQExtendOrderOrEarlier).click();
     }
-    public void openFAQ6(){
-        driver.findElement(FAQ6).click();
+    public void openFAQBringChargers(){
+        driver.findElement(FAQBringChargers).click();
     }
-    public void openFAQ7(){
-        driver.findElement(FAQ7).click();
+    public void openFAQCancelOrder(){
+        driver.findElement(FAQCancelOrder).click();
     }
-    public void openFAQ8(){
-        driver.findElement(FAQ8).click();
+    public void openFAQOutsideMoscowRingRoad(){
+        driver.findElement(FAQOutsideMoscowRingRoad).click();
     }
 
     public void clickOrderMiddleButton(){

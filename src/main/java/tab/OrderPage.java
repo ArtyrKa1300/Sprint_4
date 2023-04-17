@@ -19,25 +19,28 @@ public class OrderPage {
     // Поле "Когда привезти самокат"
     private By inputDate = By.xpath(".//input[@placeholder='* Когда привезти самокат']");
     // Поле "Срок аренды"
-    private By inputPeriod = By.xpath(".//div/div[2]/div[2]/div[2]/div[1]/div[1]");
+    private By inputPeriod = By.xpath(".//div[text()='* Срок аренды']");
+    //Выпадающее меню кнопка "двое суток"
+    private By inputPeriodFromDropdown = By.xpath("//div[text()='двое суток']");
     // Селектор выбора цвета
-    private By selectColor = By.xpath("/html/body/div/div/div[2]/div[2]/div[3]/label[1]");
+    private By selectColor = By.xpath(".//input[@id='black']");
     // Поле "Комментарий для курьера"
     private By inputComment = By.xpath(".//input[@placeholder='Комментарий для курьера']");
     // Кнопка "Заказать"
     private By orderButton = By.xpath("//div[contains(@class,'Order_Buttons')]//button[text()='Заказать']");
     // Кнопка "Да"
-    private By yesButton = By.xpath("//*[@id='root']/div/div[2]/div[5]/div[2]/button[2]");
-
+    private By yesButton = By.xpath("//div[starts-with(@class,'Order_Buttons')]/button[text()='Да']");
+    //Локатор на кнопку "Посмотреть статус" в случае успешного заказа
+    public By lookStatus = By.xpath("//button[text()='Посмотреть статус']");
 
     public OrderPage(WebDriver driver) {
         this.driver = driver;
     }
 
-    public void InputName(String name){
+    public void inputName(String name){
         driver.findElement(inputName).sendKeys(name);
     }
-    public void InputSurName(String surName){
+    public void inputSurName(String surName){
         driver.findElement(inputSurName).sendKeys(surName);
     }
     public void inputAddress(String address){
@@ -45,6 +48,7 @@ public class OrderPage {
     }
     public void inputMetro(){
         driver.findElement(inputMetro).sendKeys("Площадь революции");
+        driver.findElement(By.xpath(".//button[@value='58']")).click();
     }
     public void inputTelephone(String telephone){
         driver.findElement(inputTelephone).sendKeys(telephone);
@@ -64,7 +68,7 @@ public class OrderPage {
     public void clickPeriod()
     {
         driver.findElement(inputPeriod).click();
-        driver.findElement(By.xpath("//*[@id='root']/div/div[2]/div[2]/div[2]/div[2]/div[2]")).click();
+        driver.findElement(inputPeriodFromDropdown).click();
     }
     public void clickOrder()
     {

@@ -1,10 +1,11 @@
 import org.junit.Before;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.junit.After;
 import org.junit.Test;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import tab.*;
 import static junit.framework.TestCase.assertEquals;
@@ -12,30 +13,54 @@ import static junit.framework.TestCase.assertEquals;
 public class CheckOrderScooter
 {
     ChromeOptions options = new ChromeOptions();
-
     WebDriver driver = new ChromeDriver(options);
     HomePage homePage = new HomePage(driver);
-    String url = "https://qa-scooter.praktikum-services.ru/";
     OrderPage orderPage = new OrderPage(driver);
 
     @Before
     public void testPreparing()
     {
-        driver.get(url);
+        // Для запуска Firefox
+        //System.setProperty("webdriver.gecko.driver", "C:\\Users\\Artyr\\IdeaProjects\\Sprint_4\\src\\main\\resources\\geckodriver.exe");
+        //FirefoxOptions options = new FirefoxOptions();
+        //WebDriver driver = new FirefoxDriver(options);
+        //HomePage homePage = new HomePage(driver);
+        //OrderPage orderPage = new OrderPage(driver);
+        driver.get(homePage.url);
         homePage.clickCloseCookie();
         new WebDriverWait(driver,3);
+
+
+
+            homePage.clickOrderTopButton();
+            orderPage.inputName("Владимир");
+            orderPage.inputSurName("Ленин");
+            orderPage.inputAddress("Москва, Красная площадь");
+            orderPage.inputTelephone("+7111111111");
+            orderPage.inputMetro();
+            orderPage.clickNextButton();
+            orderPage.inputComment("Со стороны Кремля");
+            orderPage.clickColor();
+            orderPage.clickPeriod();
+            orderPage.inputDate("15.04.2023");
+            orderPage.clickOrder();
+            orderPage.clickYes();
+
+            String answer = driver.findElement(orderPage.lookStatus).getText();
+            assertEquals("Посмотреть статус", answer);
+            System.out.println(answer);
+
     }
 
     @Test
     public void checkOrderScooterTopButton()
     {
         homePage.clickOrderTopButton();
-        orderPage.InputName("Владимир");
-        orderPage.InputSurName("Ленин");
+        orderPage.inputName("Владимир");
+        orderPage.inputSurName("Ленин");
         orderPage.inputAddress("Москва, Красная площадь");
         orderPage.inputTelephone("+7111111111");
         orderPage.inputMetro();
-        driver.findElement(By.xpath(".//button[@value='58']")).click();
         orderPage.clickNextButton();
         orderPage.inputComment("Со стороны Кремля");
         orderPage.clickColor();
@@ -44,7 +69,7 @@ public class CheckOrderScooter
         orderPage.clickOrder();
         orderPage.clickYes();
 
-        String answer =   driver.findElement(By.xpath("/html/body/div/div/div[2]/div[5]/div[1]")).getText();
+        String answer = driver.findElement(orderPage.lookStatus).getText();
         assertEquals("Заказ оформлен", answer);
     }
 
@@ -52,12 +77,11 @@ public class CheckOrderScooter
     public void checkOrderScooterMiddleButton()
     {
         homePage.clickOrderMiddleButton();
-        orderPage.InputName("ТетовоеИмя");
-        orderPage.InputSurName("ТестоваяФамилия");
+        orderPage.inputName("ТетовоеИмя");
+        orderPage.inputSurName("ТестоваяФамилия");
         orderPage.inputAddress("ТестовыйАдрес");
         orderPage.inputTelephone("+79143935566");
         orderPage.inputMetro();
-        driver.findElement(By.xpath(".//button[@value='58']")).click();
         orderPage.clickNextButton();
         orderPage.inputComment("•◘♣○♠♥☻");
         orderPage.clickColor();
@@ -66,7 +90,7 @@ public class CheckOrderScooter
         orderPage.clickOrder();
         orderPage.clickYes();
 
-        String answer =   driver.findElement(By.xpath("/html/body/div/div/div[2]/div[5]/div[1]")).getText();
+        String answer =   driver.findElement(orderPage.lookStatus).getText();
         assertEquals("Заказ оформлен", answer);
     }
 
