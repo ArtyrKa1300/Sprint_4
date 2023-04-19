@@ -36,7 +36,6 @@ public class OrderPage {
     public OrderPage(WebDriver driver) {
         this.driver = driver;
     }
-
     public void inputName(String name){
         driver.findElement(inputName).sendKeys(name);
     }
